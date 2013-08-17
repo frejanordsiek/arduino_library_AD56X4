@@ -1,0 +1,3 @@
+2013-08-16 Freja Nordsiek
+	* Initial version.
+	* Added example: examples/Four_Sine_Waves/Four_Sine_Waves.ino
