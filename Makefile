@@ -15,7 +15,8 @@ PACKAGENAME=AD56X4
 # Convert spaces and punctuation to underscores in the version.
 VERSION=`cat VERSION.txt | tr [:space:] _ | tr [:punct:] _ `
 PACKAGEFILE=$(PACKAGENAME)_$(VERSION).zip
-PACKAGECONTENTS=LICENSE.txt VERSION.txt keywords.txt Makefile $(PACKAGENAME).h $(PACKAGENAME).cpp examples
+PACKAGECONTENTS=LICENSE.txt VERSION.txt keywords.txt Makefile ChangeLog.txt \
+                $(PACKAGENAME).h $(PACKAGENAME).cpp examples
 
 all: package
 
