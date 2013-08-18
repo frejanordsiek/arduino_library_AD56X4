@@ -16,7 +16,7 @@ PACKAGENAME=AD56X4
 VERSION=`cat VERSION.txt | tr [:space:] _ `
 PACKAGEFILE=$(PACKAGENAME)_$(VERSION).zip
 PACKAGECONTENTS=LICENSE.txt VERSION.txt keywords.txt Makefile ChangeLog.txt \
-                $(PACKAGENAME).h $(PACKAGENAME).cpp examples
+                README.md $(PACKAGENAME).h $(PACKAGENAME).cpp examples
 
 all: package
 
