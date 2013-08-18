@@ -1,3 +1,4 @@
 2013-08-16 Freja Nordsiek
 	* Initial version.
 	* Added example: examples/Four_Sine_Waves/Four_Sine_Waves.ino
+	* Slightly modified license to original 3-clause BSD.
