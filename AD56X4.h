@@ -169,24 +169,43 @@ class AD56X4Class
 {
   
   public:
-    static void setChannel (int SS_pin, byte setMode, byte channel, word value);
+  
+    static void setChannel (int SS_pin, byte setMode, byte channel,
+                            word value);
     static void setChannel (int SS_pin, byte setMode, word values[]);
-    static void setChannel (int SS_pin, byte setMode, word value_D, word value_C, word value_B, word value_A);
+    static void setChannel (int SS_pin, byte setMode, word value_D,
+                            word value_C, word value_B, word value_A);
+                            
     static void updateChannel (int SS_pin, byte channel);
-	static void powerUpDown (int SS_pin, byte powerMode, boolean channels[]);
-    static void powerUpDown (int SS_pin, byte powerMode, boolean channel_D, boolean channel_C, boolean channel_B, boolean channel_A);
+    
+    static void powerUpDown (int SS_pin, byte powerMode,
+                             boolean channels[]);
+    static void powerUpDown (int SS_pin, byte powerMode,
+                             boolean channel_D, boolean channel_C,
+                             boolean channel_B, boolean channel_A);
     static void powerUpDown (int SS_pin, byte powerModes[]);
+    
     static void reset (int SS_pin, boolean fullReset);
+    
     static void setInputMode (int SS_pin, boolean channels[]);
-    static void setInputMode (int SS_pin, boolean channel_D, boolean channel_C, boolean channel_B, boolean channel_A);
+    static void setInputMode (int SS_pin, boolean channel_D,
+                              boolean channel_C, boolean channel_B,
+                              boolean channel_A);
+    
     static void useInternalReference (int SS_pin, boolean yesno);
     
   private:
-    static void powerUpDown (int SS_pin, byte powerMode, byte channelMask);
-	static void setInputMode (int SS_pin, byte channelMask);
-	static word makeChannelMask (boolean channels[]);
-    static word makeChannelMask (boolean channel_D, boolean channel_C, boolean channel_B, boolean channel_A);
-    static void writeMessage (int SS_pin, byte command, byte address, word data);
+    static void powerUpDown (int SS_pin, byte powerMode,
+                             byte channelMask);
+    
+    static void setInputMode (int SS_pin, byte channelMask);
+    
+    static word makeChannelMask (boolean channels[]);
+    static word makeChannelMask (boolean channel_D, boolean channel_C,
+                                 boolean channel_B, boolean channel_A);
+    
+    static void writeMessage (int SS_pin, byte command, byte address,
+                              word data);
     
 };
 

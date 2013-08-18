@@ -158,7 +158,8 @@ AD56X4Class AD56X4;
                                    then update all DAC registers
                                    from the input registers.
 */
-void AD56X4Class::setChannel (int SS_pin, byte setMode, byte channel, word value)
+void AD56X4Class::setChannel (int SS_pin, byte setMode, byte channel,
+                              word value)
 {
   // Don't do anything if we weren't given a valid setMode.
   if (setMode == AD56X4_SETMODE_INPUT 
@@ -179,7 +180,8 @@ void AD56X4Class::setChannel (int SS_pin, byte setMode, word values[])
         AD56X4Class::writeMessage(SS_pin,setMode,i,values[3-i]);
     }
 }
-void AD56X4Class::setChannel (int SS_pin, byte setMode, word value_D, word value_C, word value_B, word value_A)
+void AD56X4Class::setChannel (int SS_pin, byte setMode, word value_D,
+                              word value_C, word value_B, word value_A)
 {
   word values[] = {value_D,value_C,value_B,value_A};
   AD56X4Class::setChannel(SS_pin,setMode,values);
@@ -218,19 +220,23 @@ void AD56X4Class::updateChannel (int SS_pin, byte channel)
    four boolean arguments. Or, an array of power modes can be
    applied to each channel (in D through A order).
 */
-void AD56X4Class::powerUpDown (int SS_pin, byte powerMode, byte channelMask)
+void AD56X4Class::powerUpDown (int SS_pin, byte powerMode,
+                               byte channelMask)
 {
   AD56X4Class::writeMessage(SS_pin,AD56X4_COMMAND_POWER_UPDOWN,0,
                             word((B00110000 & powerMode)
                             | (B00001111 & channelMask)));
 }
-void AD56X4Class::powerUpDown (int SS_pin, byte powerMode, boolean channels[])
+void AD56X4Class::powerUpDown (int SS_pin, byte powerMode,
+                               boolean channels[])
 {
   AD56X4Class::writeMessage(SS_pin,AD56X4_COMMAND_POWER_UPDOWN,0,
                             word(B00110000 & powerMode) 
                             | AD56X4Class::makeChannelMask(channels));
 }
-void AD56X4Class::powerUpDown (int SS_pin, byte powerMode, boolean channel_D, boolean channel_C, boolean channel_B, boolean channel_A)
+void AD56X4Class::powerUpDown (int SS_pin, byte powerMode,
+                               boolean channel_D, boolean channel_C,
+                               boolean channel_B, boolean channel_A)
 {
   AD56X4Class::writeMessage(SS_pin,AD56X4_COMMAND_POWER_UPDOWN,0,
                             word(B00110000 & powerMode) 
@@ -262,7 +268,8 @@ void AD56X4Class::powerUpDown (int SS_pin, byte powerModes[])
 */
 void AD56X4Class::reset (int SS_pin, boolean fullReset)
 {
-  AD56X4Class::writeMessage(SS_pin,AD56X4_COMMAND_RESET,0,word(fullReset));
+  AD56X4Class::writeMessage(SS_pin,AD56X4_COMMAND_RESET,0,
+                            word(fullReset));
 }
 
 
@@ -285,7 +292,9 @@ void AD56X4Class::setInputMode (int SS_pin, boolean channels[])
   AD56X4Class::writeMessage(SS_pin,AD56X4_COMMAND_SET_LDAC,0,
           AD56X4Class::makeChannelMask(channels));
 }
-void AD56X4Class::setInputMode (int SS_pin, boolean channel_D, boolean channel_C, boolean channel_B, boolean channel_A)
+void AD56X4Class::setInputMode (int SS_pin, boolean channel_D,
+                                boolean channel_C, boolean channel_B,
+                                boolean channel_A)
 {
   AD56X4Class::writeMessage(SS_pin,AD56X4_COMMAND_SET_LDAC,0,
                             AD56X4Class::makeChannelMask(channel_D,channel_C,channel_B,channel_A));
@@ -316,7 +325,10 @@ word AD56X4Class::makeChannelMask (boolean channels[])
   return word((byte(channels[0]) << 3) | (byte(channels[1]) << 2)
               | (byte(channels[2]) << 1) | byte(channels[3]));
 }
-word AD56X4Class::makeChannelMask (boolean channel_D, boolean channel_C, boolean channel_B, boolean channel_A)
+word AD56X4Class::makeChannelMask (boolean channel_D,
+                                   boolean channel_C,
+                                   boolean channel_B,
+                                   boolean channel_A)
 {
   return word((byte(channel_D) << 3) | (byte(channel_C) << 2)
               | (byte(channel_B) << 1) | byte(channel_A));
@@ -331,7 +343,8 @@ word AD56X4Class::makeChannelMask (boolean channel_D, boolean channel_C, boolean
    the value to set a channel register to or other control data for
    other commands.
 */
-void AD56X4Class::writeMessage (int SS_pin, byte command, byte address, word data)
+void AD56X4Class::writeMessage (int SS_pin, byte command,
+                                byte address, word data)
 {
   
   // Set the SPI mode to SPI_MODE1 and the bit order to MSB first.

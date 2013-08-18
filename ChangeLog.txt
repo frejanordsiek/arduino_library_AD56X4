@@ -1,3 +1,6 @@
+2013-08-17 Freja Nordsiek
+	* Hard wrapped function declaration lines that were too long.
+
 2013-08-16 Freja Nordsiek
 	* Initial version.
 	* Added example: examples/Four_Sine_Waves/Four_Sine_Waves.ino
