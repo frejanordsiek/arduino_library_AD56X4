@@ -2,3 +2,4 @@
 	* Initial version.
 	* Added example: examples/Four_Sine_Waves/Four_Sine_Waves.ino
 	* Slightly modified license to original 3-clause BSD.
+	* Added README.txt
