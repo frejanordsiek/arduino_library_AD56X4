@@ -195,10 +195,10 @@ class AD56X4Class
     static void useInternalReference (int SS_pin, boolean yesno);
     
   private:
-    static void powerUpDown (int SS_pin, byte powerMode,
-                             byte channelMask);
+    inline static void powerUpDown (int SS_pin, byte powerMode,
+                                    byte channelMask);
     
-    static void setInputMode (int SS_pin, byte channelMask);
+    inline static void setInputMode (int SS_pin, byte channelMask);
     
     static word makeChannelMask (boolean channels[]);
     static word makeChannelMask (boolean channel_D, boolean channel_C,

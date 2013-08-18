@@ -1,5 +1,7 @@
 2013-08-17 Freja Nordsiek
 	* Hard wrapped function declaration lines that were too long.
+	* Changed the private overloads of powerUpDown and setInputMode to
+	  inline and made the public overloads call them. 
 
 2013-08-16 Freja Nordsiek
 	* Initial version.

@@ -165,7 +165,7 @@ void AD56X4Class::setChannel (int SS_pin, byte setMode, byte channel,
   if (setMode == AD56X4_SETMODE_INPUT 
       || setMode == AD56X4_SETMODE_INPUT_DAC 
       || setMode == AD56X4_SETMODE_INPUT_DAC_ALL)
-    AD56X4Class::writeMessage(SS_pin,setMode,channel,value);
+    AD56X4.writeMessage(SS_pin,setMode,channel,value);
 }
 void AD56X4Class::setChannel (int SS_pin, byte setMode, word values[])
 {
@@ -177,14 +177,14 @@ void AD56X4Class::setChannel (int SS_pin, byte setMode, word values[])
       // It luckily turns out that channels A through D are numbers
       // 0 through 3, which we will exploit in the for loop.
       for (int i = 3; i >= 0; i--)
-        AD56X4Class::writeMessage(SS_pin,setMode,i,values[3-i]);
+        AD56X4.writeMessage(SS_pin,setMode,i,values[3-i]);
     }
 }
 void AD56X4Class::setChannel (int SS_pin, byte setMode, word value_D,
                               word value_C, word value_B, word value_A)
 {
   word values[] = {value_D,value_C,value_B,value_A};
-  AD56X4Class::setChannel(SS_pin,setMode,values);
+  AD56X4.setChannel(SS_pin,setMode,values);
 }
 
 /* Commands the AD564X DAC whose Slave Select pin is SS_pin to
@@ -199,7 +199,7 @@ void AD56X4Class::setChannel (int SS_pin, byte setMode, word value_D,
 */
 void AD56X4Class::updateChannel (int SS_pin, byte channel)
 {
-  AD56X4Class::writeMessage(SS_pin,AD56X4_COMMAND_UPDATE_DAC_REGISTER,
+  AD56X4.writeMessage(SS_pin,AD56X4_COMMAND_UPDATE_DAC_REGISTER,
                             channel,0);
 }
 
@@ -223,24 +223,23 @@ void AD56X4Class::updateChannel (int SS_pin, byte channel)
 void AD56X4Class::powerUpDown (int SS_pin, byte powerMode,
                                byte channelMask)
 {
-  AD56X4Class::writeMessage(SS_pin,AD56X4_COMMAND_POWER_UPDOWN,0,
-                            word((B00110000 & powerMode)
-                            | (B00001111 & channelMask)));
+  AD56X4.writeMessage(SS_pin,AD56X4_COMMAND_POWER_UPDOWN,0,
+                      word((B00110000 & powerMode)
+                      | (B00001111 & channelMask)));
 }
 void AD56X4Class::powerUpDown (int SS_pin, byte powerMode,
                                boolean channels[])
 {
-  AD56X4Class::writeMessage(SS_pin,AD56X4_COMMAND_POWER_UPDOWN,0,
-                            word(B00110000 & powerMode) 
-                            | AD56X4Class::makeChannelMask(channels));
+  AD56X4.powerUpDown(SS_pin,powerMode,
+                     AD56X4.makeChannelMask(channels));
 }
 void AD56X4Class::powerUpDown (int SS_pin, byte powerMode,
                                boolean channel_D, boolean channel_C,
                                boolean channel_B, boolean channel_A)
 {
-  AD56X4Class::writeMessage(SS_pin,AD56X4_COMMAND_POWER_UPDOWN,0,
-                            word(B00110000 & powerMode) 
-                            | AD56X4Class::makeChannelMask(channel_D,channel_C,channel_B,channel_A));
+  AD56X4.powerUpDown(SS_pin,powerMode,
+                     AD56X4.makeChannelMask(channel_D,channel_C,
+                     channel_B,channel_A));
 }
 void AD56X4Class::powerUpDown (int SS_pin, byte powerModes[])
 {
@@ -250,9 +249,9 @@ void AD56X4Class::powerUpDown (int SS_pin, byte powerModes[])
   byte channelMask = 1;
   for (int i = 0; i < 4; i++)
     {
-      AD56X4Class::writeMessage(SS_pin,AD56X4_COMMAND_POWER_UPDOWN,0,
-                                word((B00110000 & powerModes[i])
-                                | (B00001111 & channelMask)));
+      AD56X4.writeMessage(SS_pin,AD56X4_COMMAND_POWER_UPDOWN,0,
+                          word((B00110000 & powerModes[i])
+                          | (B00001111 & channelMask)));
       channelMask = channelMask << 1;
     }
 }
@@ -268,8 +267,7 @@ void AD56X4Class::powerUpDown (int SS_pin, byte powerModes[])
 */
 void AD56X4Class::reset (int SS_pin, boolean fullReset)
 {
-  AD56X4Class::writeMessage(SS_pin,AD56X4_COMMAND_RESET,0,
-                            word(fullReset));
+  AD56X4.writeMessage(SS_pin,AD56X4_COMMAND_RESET,0, word(fullReset));
 }
 
 
@@ -284,20 +282,20 @@ void AD56X4Class::reset (int SS_pin, boolean fullReset)
 */
 void AD56X4Class::setInputMode (int SS_pin, byte channelMask)
 {
-  AD56X4Class::writeMessage(SS_pin,AD56X4_COMMAND_SET_LDAC,0,
-                            word(channelMask));
+  AD56X4.writeMessage(SS_pin,AD56X4_COMMAND_SET_LDAC,0,
+                      word(channelMask));
 }
 void AD56X4Class::setInputMode (int SS_pin, boolean channels[])
 {
-  AD56X4Class::writeMessage(SS_pin,AD56X4_COMMAND_SET_LDAC,0,
-          AD56X4Class::makeChannelMask(channels));
+  AD56X4.setInputMode(SS_pin,AD56X4.makeChannelMask(channels));
 }
 void AD56X4Class::setInputMode (int SS_pin, boolean channel_D,
                                 boolean channel_C, boolean channel_B,
                                 boolean channel_A)
 {
-  AD56X4Class::writeMessage(SS_pin,AD56X4_COMMAND_SET_LDAC,0,
-                            AD56X4Class::makeChannelMask(channel_D,channel_C,channel_B,channel_A));
+  AD56X4.setInputMode(SS_pin,
+                      AD56X4.makeChannelMask(channel_D,channel_C,
+                                             channel_B,channel_A));
 }
 
 
@@ -309,8 +307,8 @@ void AD56X4Class::setInputMode (int SS_pin, boolean channel_D,
 */
 void AD56X4Class::useInternalReference (int SS_pin, boolean yesno)
 {
-  AD56X4Class::writeMessage(SS_pin,AD56X4_COMMAND_REFERENCE_ONOFF,0,
-                            word(yesno));
+  AD56X4.writeMessage(SS_pin,AD56X4_COMMAND_REFERENCE_ONOFF,0,
+                      word(yesno));
 }
 
 
