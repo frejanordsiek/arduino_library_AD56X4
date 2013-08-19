@@ -249,9 +249,7 @@ void AD56X4Class::powerUpDown (int SS_pin, byte powerModes[])
   byte channelMask = 1;
   for (int i = 0; i < 4; i++)
     {
-      AD56X4.writeMessage(SS_pin,AD56X4_COMMAND_POWER_UPDOWN,0,
-                          word((B00110000 & powerModes[i])
-                          | (B00001111 & channelMask)));
+      AD56X4.powerUpDown(SS_pin,powerModes[i],channelMask);
       channelMask = channelMask << 1;
     }
 }
