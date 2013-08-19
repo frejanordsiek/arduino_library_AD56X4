@@ -40,6 +40,7 @@
 */
 
 #include "Arduino.h"
+#include "math.h"
 #include <SPI.h>
 #include <AD56X4.h>
 
@@ -54,10 +55,6 @@ float frequencies[] = {2.2e3, 2.2e3, 2.2e3, 2.2e3};
 float phases[] = {0, 90, 180, 270};
 float offsets[] = {32768, 32768, 32768, 32768};
 float amplitudes[] = {32600, 32600, 32600, 32600};
-
-// Need the value of pi.
-
-const float pi = 3.14159265358979;
 
 void setup()
 {
@@ -101,7 +98,7 @@ void loop()
       // Calculate the sine wave value.
       
       float y = offsets[i] + amplitudes[i]
-                * sin(2.0*pi*(frequencies[i] + phases[i]/360.0));
+                * sin(2.0*M_PI*(frequencies[i] + phases[i]/360.0));
       
       // Convert to a word (unsigned int) making sure to keep it
       // in the range [0, 0xFFFF].
@@ -127,4 +124,3 @@ void loop()
   AD56X4.updateChannel(AD56X4_SS_pin, AD56X4_CHANNEL_ALL);
   
 }
-

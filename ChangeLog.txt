@@ -1,3 +1,6 @@
+2013-08-19 Freja Nordsiek
+	* Changed Four_Sine_Waves.ino to use builtin value of pi.
+
 2013-08-18 Freja Nordsiek
 	* Hard wrapped function declaration lines that were too long.
 	* Changed the private overloads of powerUpDown and setInputMode to
