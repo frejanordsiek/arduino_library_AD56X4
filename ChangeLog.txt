@@ -1,9 +1,9 @@
-2013-08-17 Freja Nordsiek
+2013-08-18 Freja Nordsiek
 	* Hard wrapped function declaration lines that were too long.
 	* Changed the private overloads of powerUpDown and setInputMode to
 	  inline and made the public overloads call them. 
 
-2013-08-16 Freja Nordsiek
+2013-08-17 Freja Nordsiek
 	* Initial version.
 	* Added example: examples/Four_Sine_Waves/Four_Sine_Waves.ino
 	* Slightly modified license to original 3-clause BSD.
