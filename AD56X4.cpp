@@ -55,7 +55,10 @@
    The chip is an SPI slave that expects SPI_MODE1 for its polarity
    and phase (read on falling edge and clock low while idle) that
    can operate at up to 50 MHz, which is far above what the arduino
-   can do (8 MHz for the Uno). Messages must be sent MSB first and
+   can do (8 MHz for the Uno). The DIN, SCLK, and SYNC pins in the
+   chip documentation correspond to the Arduino MOSI, SCK, and SS
+   pins (doesn't have to use the SS for the arduino, but it is a
+   a reasonable default pin). Messages must be sent MSB first and
    are 24 bits. The first two bits are junk and are ignored. The
    next three bits are the command bits, which tell the DAC what
    operation to do. The next three bits are the address bits, which
