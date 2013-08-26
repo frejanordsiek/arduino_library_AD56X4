@@ -70,7 +70,7 @@ The AD56X4 series DACs all have the value they are outputting and a buffer holdi
 Example Code
 ------------
 
-An example program, [Four_Sine_Waves](./examples/Four_Sine_Waves/Four_Sine_Waves.ino), is provided that writes 2.2 kHz sine waves to each channel that are out of phase with each other in 90 degree increments.
+An example program, [Four_Sine_Waves](./examples/Four_Sine_Waves/Four_Sine_Waves.ino), is provided that writes 10 Hz sine waves to each channel that are out of phase with each other in 90 degree increments.
 
 
 

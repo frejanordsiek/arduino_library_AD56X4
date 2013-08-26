@@ -30,7 +30,7 @@
 /* Analog Sine Waves
    
    This example controls an Analog Devices AD56X4 Quad Channel DAC
-   (Digital to Analog Converter) by SPI and writes a 2.2 kHz sine
+   (Digital to Analog Converter) by SPI and writes a 10 Hz sine
    wave to each channel that are all 90 degrees out of phase. The
    outputs are updated synchronously.
    
@@ -51,7 +51,7 @@ int AD56X4_SS_pin = 10;
 // Define the sine wave frequencies for each channel in Hz, the
 // initial phases in degrees, the offsets, and the amplitudes.
 
-float frequencies[] = {2.2e3, 2.2e3, 2.2e3, 2.2e3};
+float frequencies[] = {1e1, 1e1, 1e1, 1e1};
 float phases[] = {0, 90, 180, 270};
 float offsets[] = {32768, 32768, 32768, 32768};
 float amplitudes[] = {32600, 32600, 32600, 32600};
