@@ -98,7 +98,7 @@ void loop()
       // Calculate the sine wave value.
       
       float y = offsets[i] + amplitudes[i]
-                * sin(2.0*M_PI*(frequencies[i] + phases[i]/360.0));
+                * sin(2.0*M_PI*(t*frequencies[i] + phases[i]/360.0));
       
       // Convert to a word (unsigned int) making sure to keep it
       // in the range [0, 0xFFFF].
