@@ -1,3 +1,6 @@
+2013-08-28 Freja Nordsiek
+	* Added "AD56X4." before function declarations in README.md.
+
 2013-08-26 Freja Nordsiek
 	* Fixed lack of time evolution bug in Four_Sine_Waves example.
 	* Changed sine wave frequency to 10 Hz in Four_Sine_Waves

@@ -78,9 +78,9 @@ Library Functions
 -----------------
 
 *   ```Arduino
-    void setChannel(int SS_pin, byte setMode, byte channel, word value)
-    void setChannel(int SS_pin, byte setMode, word values[])
-    void setChannel(int SS_pin, byte setMode, word value_D, word value_C, word value_B, word value_A)
+    void AD56X4.setChannel(int SS_pin, byte setMode, byte channel, word value)
+    void AD56X4.setChannel(int SS_pin, byte setMode, word values[])
+    void AD56X4.setChannel(int SS_pin, byte setMode, word value_D, word value_C, word value_B, word value_A)
     ```
     
     Sets the value/s of the specified channel/s on the chip (Slave Select pin `SS_pin`). Values (last argument/s) have to be `word` types (unsigned 16-bit integers, which are `unsigned int` as well). For 12 and 14-bit chips, the last 4 and 2 bits respectively are ignored. `setMode` specifies how the registers are set when the channels/s are set, and the valid values are listed below
@@ -100,15 +100,15 @@ Library Functions
     They CANNOT be bitwise OR'ed together. In the second and third calling overloads, each channel is set to the given values, which can either be a 4-element array (channel D to A order) or four separate arguments.
 
 *   ```Arduino
-    void updateChannel(int SS_pin, byte channel)
+    void AD56X4.updateChannel(int SS_pin, byte channel)
     ````
     
     For the chip with the Slave Select pin `SS_pin`, the DAC register (and therefore voltage output) of the specified channel (see `setChannel` above for how channels are specified) is set to the value of its input register. If `setChannel` was called with `setMode = AD56X4_SETMODE_INPUT`, then this function will have to be called on the channel in order for the output voltage to be updated.
 
 *   ```Arduino
-    void powerUpDown(int SS_pin, byte powerMode, boolean channels[])
-    void powerUpDown(int SS_pin, byte powerMode, boolean channel_D, boolean channel_C, boolean channel_B, boolean channel_A)
-    void powerUpDown(int SS_pin, byte powerModes[])
+    void AD56X4.powerUpDown(int SS_pin, byte powerMode, boolean channels[])
+    void AD56X4.powerUpDown(int SS_pin, byte powerMode, boolean channel_D, boolean channel_C, boolean channel_B, boolean channel_A)
+    void AD56X4.powerUpDown(int SS_pin, byte powerModes[])
     ```
     
     For the chip with the Slave Select pin `SS_pin`, the power state/mode of the channels are set. The valid power mode/s are
@@ -121,20 +121,20 @@ Library Functions
     For the first and second overloads (function calling methods), one power mode `powerMode` is applied to the specified channels. The channels are specified either as a 4-element `boolean` array (channel D to A order) or as four `boolean` arguments. `true` means set to the given power mode and `false` means not (keep current power mode). The third overload sets the power mode of each channel to the power modes given in the 4-element array `powerModes[]` (channel D to A order).
 
 *   ```Arduino    
-    void reset(int SS_pin, boolean fullReset)
+    void AD56X4.reset(int SS_pin, boolean fullReset)
     ```
     
     Resets the AD56X4 chip with Slave Select pin `SS_pin`. The DAC and input registers are all reset to 0, and thus the analog voltages are set to zero. If `fullReset` is `true`, then a full reset is done which resets the channel powerMode to on (`AD56X4_POWERMODE_NORMAL`), the external voltage reference is used (internal reference, if present, turned off), and the input mode (LDAC register in the chip data sheet) is reset (updating the input registers does not cause automatic updates of the DAC registers from their values). 
 
 *   ```Arduino
-    void setInputMode(int SS_pin, boolean channels[])
-    void setInputMode(int SS_pin, boolean channel_D, boolean channel_C, boolean channel_B, boolean channel_A)
+    void AD56X4.setInputMode(int SS_pin, boolean channels[])
+    void AD56X4.setInputMode(int SS_pin, boolean channel_D, boolean channel_C, boolean channel_B, boolean channel_A)
     ```
     
     Sets the input modes of each channel on the chip (Slave Select pin `SS_pi`). The modes are `boolean` with `true` meaning that setting the input register automatically sets the DAC register (and therefore voltage output) to the same value and `false` meaning no auto update of the DAC register. The modes for each channel can either be given by a 4-element `boolean` array (channel D to A order) or as four separate input arguments.
 
 *   ```Arduino
-    void useInternalReference (int SS_pin, boolean yesno)
+    void AD56X4.useInternalReference (int SS_pin, boolean yesno)
     ```
     
     Choose whether the chip (Slave Select pin `SS_pin`) uses the internal voltage reference (`yesno = true`) or the external reference pin (`yesno = false`). Only applicable for the chips that have an internal reference (AD56XR).
