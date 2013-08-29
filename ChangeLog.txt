@@ -1,5 +1,6 @@
 2013-08-28 Freja Nordsiek
 	* Added "AD56X4." before function declarations in README.md.
+	* Incremented version to 0.1 since the library appears to work.
 
 2013-08-26 Freja Nordsiek
 	* Fixed lack of time evolution bug in Four_Sine_Waves example.
