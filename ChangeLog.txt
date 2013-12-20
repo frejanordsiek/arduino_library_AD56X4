@@ -1,3 +1,8 @@
+2013-12-20 Freja Nordsiek
+	* Changed license from 3-clause BSD to 2-clause BSD.
+	* Renamed LICENSE.txt to COPYING.txt
+	* Incremented version to 0.1.1 due to license change.
+
 2013-08-28 Freja Nordsiek
 	* Added "AD56X4." before function declarations in README.md.
 	* Incremented version to 0.1 since the library appears to work.

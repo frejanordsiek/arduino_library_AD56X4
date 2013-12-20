@@ -12,7 +12,7 @@ An [Arduino](http://arduino.cc) library to control an Analog Devices [AD56X4](ht
 
 Copyright (c) 2013, Freja Nordsiek
 
-This software is distributed under a [3-Clause BSD License](./LICENSE.txt).
+This software is distributed under a [2-Clause BSD License](./COPYING.txt).
 
 
 
