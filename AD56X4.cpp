@@ -228,7 +228,7 @@ void AD56X4Class::powerUpDown (int SS_pin, byte powerMode,
                                byte channelMask)
 {
   AD56X4.writeMessage(SS_pin,AD56X4_COMMAND_POWER_UPDOWN,0,
-                      word((B00110000 & powerMode)
+                      (word)((B00110000 & powerMode)
                       | (B00001111 & channelMask)));
 }
 void AD56X4Class::powerUpDown (int SS_pin, byte powerMode,
@@ -269,7 +269,7 @@ void AD56X4Class::powerUpDown (int SS_pin, byte powerModes[])
 */
 void AD56X4Class::reset (int SS_pin, boolean fullReset)
 {
-  AD56X4.writeMessage(SS_pin,AD56X4_COMMAND_RESET,0, word(fullReset));
+  AD56X4.writeMessage(SS_pin,AD56X4_COMMAND_RESET,0, (word)fullReset);
 }
 
 
@@ -285,7 +285,7 @@ void AD56X4Class::reset (int SS_pin, boolean fullReset)
 void AD56X4Class::setInputMode (int SS_pin, byte channelMask)
 {
   AD56X4.writeMessage(SS_pin,AD56X4_COMMAND_SET_LDAC,0,
-                      word(channelMask));
+                      (word)channelMask);
 }
 void AD56X4Class::setInputMode (int SS_pin, boolean channels[])
 {
@@ -310,7 +310,7 @@ void AD56X4Class::setInputMode (int SS_pin, boolean channel_D,
 void AD56X4Class::useInternalReference (int SS_pin, boolean yesno)
 {
   AD56X4.writeMessage(SS_pin,AD56X4_COMMAND_REFERENCE_ONOFF,0,
-                      word(yesno));
+                      (word)yesno);
 }
 
 
@@ -322,16 +322,16 @@ void AD56X4Class::useInternalReference (int SS_pin, boolean yesno)
 */
 word AD56X4Class::makeChannelMask (boolean channels[])
 {
-  return word((byte(channels[0]) << 3) | (byte(channels[1]) << 2)
-              | (byte(channels[2]) << 1) | byte(channels[3]));
+  return (word)((byte(channels[0]) << 3) | (byte(channels[1]) << 2)
+                | (byte(channels[2]) << 1) | byte(channels[3]));
 }
 word AD56X4Class::makeChannelMask (boolean channel_D,
                                    boolean channel_C,
                                    boolean channel_B,
                                    boolean channel_A)
 {
-  return word((byte(channel_D) << 3) | (byte(channel_C) << 2)
-              | (byte(channel_B) << 1) | byte(channel_A));
+  return (word)((byte(channel_D) << 3) | (byte(channel_C) << 2)
+                | (byte(channel_B) << 1) | byte(channel_A));
 }
 
 
