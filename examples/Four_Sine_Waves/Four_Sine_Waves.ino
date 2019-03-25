@@ -104,7 +104,7 @@ void loop()
       // Convert to a word (unsigned int) making sure to keep it
       // in the range [0, 0xFFFF].
       
-      word output = word(y);
+      word output = (word)y;
       
       if (y > 0xFFFF)
         output = 0xFFFF;
